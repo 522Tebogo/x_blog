@@ -137,20 +137,17 @@ colors: {
 
 ### 方法 2: 使用 Wrangler CLI
 
-如果你想使用命令行部署，需要创建 `wrangler.toml` 配置文件：
+项目已包含 `wrangler.toml` 配置文件。运行以下命令部署：
 
-\`\`\`toml
-name = "x-blog"
-compatibility_date = "2024-12-24"
+```bash
+# 首先构建项目
+npm run build
 
-[site]
-bucket = "./out"
-\`\`\`
+# 然后部署到 Cloudflare Pages
+npx wrangler pages deploy out --project-name=x-blog
+```
 
-然后运行：
-\`\`\`bash
-npx wrangler pages deploy out
-\`\`\`
+**首次部署时**，Wrangler 会提示你登录 Cloudflare 账户并创建项目。
 
 ### 重要提示
 
