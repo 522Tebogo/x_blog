@@ -1,0 +1,10 @@
+# Cloudflare Pages configuration
+# This file is automatically detected by Cloudflare Pages
+
+# Build configuration
+[build]
+  command = "npm run build"
+  publish = "out"
+
+# Environment variables (set these in Cloudflare Pages dashboard)
+# ADMIN_PASSWORD = "your-secure-password-here"

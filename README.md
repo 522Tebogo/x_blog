@@ -119,6 +119,45 @@ colors: {
 2. 在 `tailwind.config.ts` 中添加字体配置
 3. 在 `components/FontSelector.tsx` 中添加选项
 
+## 部署到 Cloudflare Pages
+
+### 方法 1: 通过 Cloudflare Pages 仪表板
+
+1. 将代码推送到 GitHub 仓库
+2. 登录 [Cloudflare Pages](https://pages.cloudflare.com/)
+3. 点击 "Create a project"
+4. 连接你的 GitHub 仓库
+5. 配置构建设置:
+   - **Framework preset**: Next.js
+   - **Build command**: `npm run build`
+   - **Build output directory**: `out`
+6. 设置环境变量（可选，用于管理员功能）:
+   - `ADMIN_PASSWORD`: 管理员密码
+7. 点击 "Save and Deploy"
+
+### 方法 2: 使用 Wrangler CLI
+
+如果你想使用命令行部署，需要创建 `wrangler.toml` 配置文件：
+
+\`\`\`toml
+name = "x-blog"
+compatibility_date = "2024-12-24"
+
+[site]
+bucket = "./out"
+\`\`\`
+
+然后运行：
+\`\`\`bash
+npx wrangler pages deploy out
+\`\`\`
+
+### 重要提示
+
+- 构建输出目录是 `out/`（由 `next.config.js` 中的 `output: 'export'` 配置）
+- 如果需要管理员功能，记得在 Cloudflare Pages 设置中添加 `ADMIN_PASSWORD` 环境变量
+- 每次推送到 GitHub 主分支，Cloudflare Pages 会自动重新部署
+
 ## License
 
 MIT
