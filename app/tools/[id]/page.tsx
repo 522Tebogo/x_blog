@@ -1,6 +1,14 @@
-import { getToolById, getCategoryById } from "@/lib/dataService";
+import { getToolById, getCategoryById, getTools } from "@/lib/dataService";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+
+export async function generateStaticParams() {
+    const tools = await getTools();
+
+    return tools.map((tool) => ({
+        id: tool.id,
+    }));
+}
 
 export default async function ToolDetailPage({ params }: { params: { id: string } }) {
     const tool = await getToolById(params.id);
