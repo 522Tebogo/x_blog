@@ -1,0 +1,16 @@
+[
+  {
+    "title": "ChatGPT",
+    "description": "AI对话助手",
+    "url": "https://chat.openai.com",
+    "categoryId": "1766568498242",
+    "icon": "🤖",
+    "tags": [
+      "AI",
+      "聊天"
+    ],
+    "featured": true,
+    "id": "1766569067942",
+    "createdAt": "2025-12-24T09:37:47.942Z"
+  }
+]
