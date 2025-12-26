@@ -135,9 +135,9 @@ colors: {
    - `ADMIN_PASSWORD`: 管理员密码
 7. 点击 "Save and Deploy"
 
-### 方法 2: 使用 Wrangler CLI
+### 方法 2: 使用 Wrangler CLI（手动部署）
 
-项目已包含 `wrangler.toml` 配置文件。运行以下命令部署：
+如果你想使用命令行手动部署：
 
 ```bash
 # 首先构建项目
@@ -147,7 +147,10 @@ npm run build
 npx wrangler pages deploy out --project-name=x-blog
 ```
 
-**首次部署时**，Wrangler 会提示你登录 Cloudflare 账户并创建项目。
+**注意：**
+- 首次部署时，Wrangler 会提示你登录 Cloudflare 账户
+- 使用 `wrangler pages deploy` 而不是 `wrangler deploy`（Pages 项目专用命令）
+- 可以修改 `--project-name` 为你想要的项目名称
 
 ### 重要提示
 
