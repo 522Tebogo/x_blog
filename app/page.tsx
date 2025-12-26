@@ -2,10 +2,13 @@ import SearchBar from "@/components/SearchBar";
 import ToolCard from "@/components/ToolCard";
 import { getTools, getCategories } from "@/lib/dataService";
 import Link from "next/link";
+import { cookies } from "next/headers";
 
 export default async function Home() {
     const tools = await getTools();
     const categories = await getCategories();
+    const cookieStore = cookies();
+    const isAdmin = cookieStore.get('admin_session')?.value === 'true';
 
     return (
         <div className="container mx-auto px-4 py-12">
@@ -22,18 +25,22 @@ export default async function Home() {
 
             {/* Quick Actions */}
             <section className="mb-16 flex flex-wrap gap-4 justify-center">
-                <Link
-                    href="/tools/add"
-                    className="glass px-8 py-4 rounded-2xl font-semibold smooth-transition hover:scale-105 hover:shadow-xl"
-                >
-                    ➕ 添加工具
-                </Link>
-                <Link
-                    href="/categories/add"
-                    className="glass px-8 py-4 rounded-2xl font-semibold smooth-transition hover:scale-105 hover:shadow-xl"
-                >
-                    📁 添加分类
-                </Link>
+                {isAdmin && (
+                    <>
+                        <Link
+                            href="/tools/add"
+                            className="glass px-8 py-4 rounded-2xl font-semibold smooth-transition hover:scale-105 hover:shadow-xl"
+                        >
+                            ➕ 添加工具
+                        </Link>
+                        <Link
+                            href="/categories/add"
+                            className="glass px-8 py-4 rounded-2xl font-semibold smooth-transition hover:scale-105 hover:shadow-xl"
+                        >
+                            📁 添加分类
+                        </Link>
+                    </>
+                )}
                 <Link
                     href="/categories"
                     className="glass px-8 py-4 rounded-2xl font-semibold smooth-transition hover:scale-105 hover:shadow-xl"
@@ -46,12 +53,14 @@ export default async function Home() {
             {categories.length === 0 ? (
                 <div className="text-center py-20">
                     <p className="text-2xl text-muted-foreground mb-6">还没有任何分类</p>
-                    <Link
-                        href="/categories/add"
-                        className="inline-block bg-gradient-to-r from-primary-500 to-accent-500 text-white px-8 py-4 rounded-2xl font-semibold smooth-transition hover:scale-105 hover:shadow-xl"
-                    >
-                        创建第一个分类
-                    </Link>
+                    {isAdmin && (
+                        <Link
+                            href="/categories/add"
+                            className="inline-block bg-gradient-to-r from-primary-500 to-accent-500 text-white px-8 py-4 rounded-2xl font-semibold smooth-transition hover:scale-105 hover:shadow-xl"
+                        >
+                            创建第一个分类
+                        </Link>
+                    )}
                 </div>
             ) : (
                 categories.map((category) => {
@@ -82,7 +91,7 @@ export default async function Home() {
             )}
 
             {/* Empty State */}
-            {tools.length === 0 && categories.length > 0 && (
+            {tools.length === 0 && categories.length > 0 && isAdmin && (
                 <div className="text-center py-20">
                     <p className="text-2xl text-muted-foreground mb-6">还没有任何工具</p>
                     <Link

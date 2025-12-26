@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { cookies } from "next/headers";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -40,7 +41,7 @@ export default function RootLayout({
             <body className={`${inter.variable} ${outfit.variable} ${poppins.variable} font-inter antialiased`}>
                 <ThemeProvider>
                     <div className="min-h-screen flex flex-col">
-                        <Header />
+                        <Header isAdmin={cookies().get('admin_session')?.value === 'true'} />
                         <main className="flex-1">
                             {children}
                         </main>

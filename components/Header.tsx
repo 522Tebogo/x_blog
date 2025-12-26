@@ -4,7 +4,7 @@ import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 import FontSelector from "./FontSelector";
 
-export default function Header() {
+export default function Header({ isAdmin }: { isAdmin: boolean }) {
     return (
         <header className="sticky top-0 z-50 glass border-b border-border/40">
             <div className="container mx-auto px-4 py-4">
@@ -33,12 +33,14 @@ export default function Header() {
                         >
                             分类
                         </Link>
-                        <Link
-                            href="/tools/add"
-                            className="smooth-transition hover:text-primary-500 font-medium"
-                        >
-                            添加工具
-                        </Link>
+                        {isAdmin && (
+                            <Link
+                                href="/tools/add"
+                                className="smooth-transition hover:text-primary-500 font-medium"
+                            >
+                                添加工具
+                            </Link>
+                        )}
                     </nav>
 
                     {/* Actions */}

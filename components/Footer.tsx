@@ -15,6 +15,7 @@ export default function Footer() {
                     </p>
 
                     <div className="flex gap-4 text-sm">
+                        <a href="/login" className="smooth-transition hover:text-primary-500">Admin</a>
                         <a href="#" className="smooth-transition hover:text-primary-500">关于</a>
                         <a href="#" className="smooth-transition hover:text-primary-500">联系</a>
                         <a href="#" className="smooth-transition hover:text-primary-500">GitHub</a>
