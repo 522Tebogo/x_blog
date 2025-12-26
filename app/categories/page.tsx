@@ -28,61 +28,61 @@ export default async function CategoriesPage() {
                     ➕ 添加分类
                 </Link>
             )}
-        </div>
+
 
             {
-        categories.length === 0 ? (
-            <div className="text-center py-20">
-                <p className="text-2xl text-muted-foreground mb-6">还没有任何分类</p>
-                {isAdmin && (
-                    <Link
-                        href="/categories/add"
-                        className="inline-block bg-gradient-to-r from-primary-500 to-accent-500 text-white px-8 py-4 rounded-2xl font-semibold smooth-transition hover:scale-105 hover:shadow-xl"
-                    >
-                        创建第一个分类
-                    </Link>
-                )}
-            </div>
-        ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((category) => {
-                const categoryToolCount = tools.filter(t => t.categoryId === category.id).length;
-
-                return (
-                    <div
-                        key={category.id}
-                        className="glass rounded-2xl p-6 card-hover group"
-                    >
-                        <div className="flex items-start gap-4 mb-4">
-                            <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 smooth-transition">
-                                {category.icon}
-                            </div>
-                            <div className="flex-1">
-                                <h3 className="text-2xl font-bold mb-2 group-hover:text-primary-500 smooth-transition">
-                                    {category.name}
-                                </h3>
-                                <p className="text-sm text-muted-foreground">
-                                    {categoryToolCount} 个工具
-                                </p>
-                            </div>
-                        </div>
-
-                        <p className="text-muted-foreground mb-4">
-                            {category.description}
-                        </p>
-
-                        <Link
-                            href={`/?category=${category.id}`}
-                            className="inline-block text-primary-500 font-semibold smooth-transition hover:underline"
-                        >
-                            查看工具 →
-                        </Link>
+                categories.length === 0 ? (
+                    <div className="text-center py-20">
+                        <p className="text-2xl text-muted-foreground mb-6">还没有任何分类</p>
+                        {isAdmin && (
+                            <Link
+                                href="/categories/add"
+                                className="inline-block bg-gradient-to-r from-primary-500 to-accent-500 text-white px-8 py-4 rounded-2xl font-semibold smooth-transition hover:scale-105 hover:shadow-xl"
+                            >
+                                创建第一个分类
+                            </Link>
+                        )}
                     </div>
-                );
-            })}
-        </div>
-    )
-    }
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {categories.map((category) => {
+                            const categoryToolCount = tools.filter(t => t.categoryId === category.id).length;
+
+                            return (
+                                <div
+                                    key={category.id}
+                                    className="glass rounded-2xl p-6 card-hover group"
+                                >
+                                    <div className="flex items-start gap-4 mb-4">
+                                        <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 smooth-transition">
+                                            {category.icon}
+                                        </div>
+                                        <div className="flex-1">
+                                            <h3 className="text-2xl font-bold mb-2 group-hover:text-primary-500 smooth-transition">
+                                                {category.name}
+                                            </h3>
+                                            <p className="text-sm text-muted-foreground">
+                                                {categoryToolCount} 个工具
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <p className="text-muted-foreground mb-4">
+                                        {category.description}
+                                    </p>
+
+                                    <Link
+                                        href={`/?category=${category.id}`}
+                                        className="inline-block text-primary-500 font-semibold smooth-transition hover:underline"
+                                    >
+                                        查看工具 →
+                                    </Link>
+                                </div>
+                            );
+                        })}
+                    </div>
+                )
+            }
         </div >
     );
 }
